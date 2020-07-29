@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _03_Classes
 {
-    class Person
+    public class Person
     {
         // Properties: First Name, Last Name, Full Name, Date Of Birth, Age
         public string FirstName { get; set; }
@@ -33,6 +33,30 @@ namespace _03_Classes
                 int yearsOfAge = Convert.ToInt32(Math.Floor(totalAgeInYears));
                 return yearsOfAge;
             }
+        }
+
+        public Vehicle Transport { get; set; }
+
+
+
+        // 1. Access Modifier => public, internal, private for example
+        // 2. Return Type => The output from the method
+        // 3. Method signature => Name and parameters (input)
+        // 4. Body of the code => Logic/Code that gets executed when the method runs
+        //1     //2     //3
+        public void SayHello()
+        {
+            Console.WriteLine($"Hello, my name is {FirstName}.");
+        }
+
+        public void SayHello(string name)
+        {
+            Console.WriteLine($"Hello {name}, my name is {FirstName}.");
+        }
+
+        public void SayHello(Person person)
+        {
+            Console.WriteLine($"Hello {person.FullName}, my name is {FirstName}.");
         }
     }
 }

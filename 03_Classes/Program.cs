@@ -31,17 +31,35 @@ namespace _03_Classes
 
             Console.WriteLine(rocket.Model);
 
-            Person josh = new Person();
-            josh.FirstName = "Joshua";
-            josh.LastName = "Tucker";
-            Console.WriteLine(josh.FullName);
+            Person instructor = new Person();
+            instructor.FirstName = "Joshua";
+            instructor.LastName = "Tucker";
+            Console.WriteLine(instructor.FullName);
 
-            josh.FirstName = "Casey";
-            josh.LastName = "Wilson";
-            Console.WriteLine(josh.FullName);
+            //instructor.FirstName = "Casey";
+            //instructor.LastName = "Wilson";
+            //Console.WriteLine(instructor.FullName);
 
-            josh.DateOfBirth = new DateTime(1991, 9, 11);
-            Console.WriteLine(josh.Age);
+            instructor.DateOfBirth = new DateTime(1991, 9, 11);
+            Console.WriteLine(instructor.Age);
+
+            instructor.Transport = rocket;
+            Console.WriteLine(instructor.Transport.TypeOfVehicle);
+
+
+
+
+            Person student = new Person();
+            student.FirstName = "Wes";
+            student.LastName = "Winn";
+
+            instructor.SayHello();
+            instructor.SayHello(student.FirstName);
+            instructor.SayHello("Banana");
+            instructor.SayHello(student);
+
+
+
 
             Console.ReadLine();
         }
