@@ -12,7 +12,7 @@ namespace _03_Classes
         {
             // New up my Vehicle Instance
             Vehicle firstVehicle = new Vehicle();
-
+           
             // Setting Make property in my firstVehicle instance
             firstVehicle.Make = "Honda";
             // Getting my Make property from firstVehicle and writing to the Console

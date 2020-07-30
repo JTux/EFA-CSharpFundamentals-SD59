@@ -9,6 +9,7 @@ namespace _03_Classes
     public enum VehicleType { Car, Truck, Van, Motorcycle, Spaceship, Plane, Boat }
     public class Vehicle
     {
+        
         // Constructor
         public Vehicle() { }
         public Vehicle(string make, string model, double mileage, VehicleType type)
