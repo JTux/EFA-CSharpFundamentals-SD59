@@ -49,7 +49,7 @@ namespace _04_Ternaries
                 return num * 3;
             }
 
-            //int banana = DoubleValue(127);
+            var banana = DoubleValue(127);
             //int orange = DoubleValue(7);
             //int pineapple = DoubleValue(17);
             //int apple = DoubleValue(1);
