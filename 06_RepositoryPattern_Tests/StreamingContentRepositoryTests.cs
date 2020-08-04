@@ -50,5 +50,19 @@ namespace _06_RepositoryPattern_Tests
             // Assert
             Assert.IsTrue(removeResult);
         }
+
+        [DataTestMethod]
+        [DataRow("rubber", true)]
+        [DataRow("toy story", false)]
+        public void DeleteByTitle_ShouldReturnCorrectBool(string title, bool expectedResult)
+        {
+            // Arrange [TestInitialize]
+
+            // Act
+            bool actualResult = _repo.DeleteContentByTitle(title);
+
+            // Assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
