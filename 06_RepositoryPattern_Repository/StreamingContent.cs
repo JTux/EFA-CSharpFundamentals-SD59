@@ -42,6 +42,9 @@ namespace _06_RepositoryPattern_Repository
         {
             get
             {
+                // Casting
+                return (int)MaturityRating < 3;
+
                 // Figure out if it is Family Friendly and return true or false
                 switch (MaturityRating)
                 {
@@ -57,6 +60,11 @@ namespace _06_RepositoryPattern_Repository
         public GenreType Genre { get; set; }
     }
 
+    public enum MaturityRating
+    {
+        G, PG, TV_Y, PG13, R, NC17, TV_PG, TV_14, TV_MA
+    }
+
     public enum GenreType
     {
         ActionAdventure,
@@ -67,10 +75,5 @@ namespace _06_RepositoryPattern_Repository
         Bromance,
         Mystery,
         SciFi
-    }
-
-    public enum MaturityRating
-    {
-        G, PG, PG13, R, NC17, TV_Y, TV_PG, TV_14, TV_MA
     }
 }
