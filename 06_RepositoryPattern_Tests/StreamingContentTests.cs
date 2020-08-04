@@ -1,5 +1,6 @@
 ﻿using System;
 using _06_RepositoryPattern_Repository;
+using _06_RepositoryPattern_Repository.Content;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace _06_RepositoryPattern_Tests
