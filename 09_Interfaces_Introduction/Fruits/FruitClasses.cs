@@ -23,6 +23,7 @@ namespace _09_Interfaces_Introduction.Fruits
             Peeled = true;
             return "You peel the banana.";
         }
+
     }
 
     public class Orange : IFruit
