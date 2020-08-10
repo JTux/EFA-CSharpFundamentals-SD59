@@ -15,7 +15,7 @@ namespace _09_Interfaces_Introduction.Fruits
         }
         public string Name
         {
-            get {return "Banana";}
+            get { return "Banana"; }
         }
         public bool Peeled { get; private set; }
         public string Peel()
