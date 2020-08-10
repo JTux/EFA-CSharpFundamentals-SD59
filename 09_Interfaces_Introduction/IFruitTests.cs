@@ -29,7 +29,7 @@ namespace _09_Interfaces_Introduction
         {
             //Arrange
             var orange = new Orange();
-
+            
             var fruitSalad = new List<IFruit>
             {
                 new Banana(),

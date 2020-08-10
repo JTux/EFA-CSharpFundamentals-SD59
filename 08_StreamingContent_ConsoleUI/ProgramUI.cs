@@ -1,4 +1,5 @@
 ﻿using _06_RepositoryPattern_Repository;
+using _08_StreamingContent_ConsoleUI.Consoles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,18 @@ using System.Threading.Tasks;
 
 namespace _08_StreamingContent_ConsoleUI
 {
-    class ProgramUI
+    public class ProgramUI
     {
         private bool _isRunning = true;
+        private readonly IConsole _console;
         private readonly StreamingContentRepository _streamingRepo = new StreamingContentRepository();
+
+        // Constructor with injected IConsole dependency
+        public ProgramUI(IConsole console)
+        {
+            // Assigning our injected IConsole to our IConsole field
+            _console = console;
+        }
 
         // Entry point to our UI, it starts our user interface
         public void Start()
@@ -31,8 +40,8 @@ namespace _08_StreamingContent_ConsoleUI
 
         private string GetMenuSelection()
         {
-            Console.Clear();
-            Console.WriteLine(
+            _console.Clear();
+            _console.WriteLine(
                             "Welcome to the Streaming Content Management System!\n" +
                             "Select Menu Item:\n" +
                             "1. Show All Streaming Content\n" +
@@ -42,13 +51,13 @@ namespace _08_StreamingContent_ConsoleUI
                             "5. Remove Streaming Content\n" +
                             "6. Exit");
 
-            string userInput = Console.ReadLine();
+            string userInput = _console.ReadLine();
             return userInput;
         }
 
         private void OpenMenuItem(string userInput)
         {
-            Console.Clear();
+            _console.Clear();
             switch (userInput)
             {
                 case "1":
@@ -75,12 +84,12 @@ namespace _08_StreamingContent_ConsoleUI
                     return;
                 default:
                     // Invalid selection
-                    //Console.WriteLine("Invalid input.");
+                    //_console.WriteLine("Invalid input.");
                     return;
             }
 
-            Console.WriteLine("Press any key to return to the menu...");
-            Console.ReadKey();
+            _console.WriteLine("Press any key to return to the menu...");
+            _console.ReadKey();
         }
 
         // Show All Content
@@ -99,7 +108,7 @@ namespace _08_StreamingContent_ConsoleUI
 
         private void DisplayContent(StreamingContent content)
         {
-            Console.WriteLine($"Title: {content.Title}\n" +
+            _console.WriteLine($"Title: {content.Title}\n" +
                 $"Description: {content.Description}\n" +
                 $"Release Year: {content.ReleaseYear}\n" +
                 $"Genre: {content.Genre}\n" +
@@ -112,10 +121,10 @@ namespace _08_StreamingContent_ConsoleUI
         private void DisplayContentByTitle()
         {
             // Prompt the user to give us a title
-            Console.Write("Enter a title: ");
+            _console.Write("Enter a title: ");
 
             // Get and store the user's input
-            string title = Console.ReadLine();
+            string title = _console.ReadLine();
 
             // Find the matching content in the repository
             StreamingContent searchResult = _streamingRepo.GetContentByTitle(title);
@@ -128,7 +137,7 @@ namespace _08_StreamingContent_ConsoleUI
             // If there's no content found, go ahead and say so
             else
             {
-                Console.WriteLine("Invalid title. Could not find any results.");
+                _console.WriteLine("Invalid title. Could not find any results.");
             }
         }
 
@@ -137,25 +146,25 @@ namespace _08_StreamingContent_ConsoleUI
         {
             // Gather values for all properties for the StreamingContent object
             // Title
-            Console.Write("Enter a title: ");
-            string title = Console.ReadLine();
+            _console.Write("Enter a title: ");
+            string title = _console.ReadLine();
 
             // Description
-            Console.Write("Enter a description: ");
-            string description = Console.ReadLine();
+            _console.Write("Enter a description: ");
+            string description = _console.ReadLine();
 
             // MaturityRating
             //G, PG, TV_Y, PG13, R, NC17, TV_PG, TV_14, TV_MA
             MaturityRating maturityRating = GetMaturityRating();
 
             // StarRating
-            Console.Write("Enter the star rating (1-5): ");
+            _console.Write("Enter the star rating (1-5): ");
             // Maybe refactor later so it won't break when not given a number
-            double starRating = double.Parse(Console.ReadLine());
+            double starRating = double.Parse(_console.ReadLine());
 
             // ReleaseYear
-            Console.Write("Enter the release year: ");
-            int releaseYear = int.Parse(Console.ReadLine());
+            _console.Write("Enter the release year: ");
+            int releaseYear = int.Parse(_console.ReadLine());
 
             // GenreType
             GenreType genre = GetGenreType();
@@ -169,7 +178,7 @@ namespace _08_StreamingContent_ConsoleUI
 
         private MaturityRating GetMaturityRating()
         {
-            Console.WriteLine("Select a Maturity Rating:\n" +
+            _console.WriteLine("Select a Maturity Rating:\n" +
                 "1. G\n" +
                 "2. PG\n" +
                 "3. TV Y\n" +
@@ -182,7 +191,7 @@ namespace _08_StreamingContent_ConsoleUI
 
             while (true)
             {
-                switch (Console.ReadLine())
+                switch (_console.ReadLine())
                 {
                     case "1":
                         return MaturityRating.G;
@@ -204,13 +213,13 @@ namespace _08_StreamingContent_ConsoleUI
                         return MaturityRating.TV_MA;
                 }
 
-                Console.WriteLine("Invalid selection. Please try again.");
+                _console.WriteLine("Invalid selection. Please try again.");
             }
         }
 
         private GenreType GetGenreType()
         {
-            Console.WriteLine("Select a Genre:\n" +
+            _console.WriteLine("Select a Genre:\n" +
                 "1. Action/Adventure\n" +
                 "2. Action\n" +
                 "3. Thriller\n" +
@@ -222,12 +231,12 @@ namespace _08_StreamingContent_ConsoleUI
 
             while (true)
             {
-                //string genreString = Console.ReadLine();
+                //string genreString = _console.ReadLine();
                 //int genreId = int.Parse(genreString);
                 //GenreType genre = (GenreType)genreId - 1;
                 //return genre;
 
-                string genreString = Console.ReadLine();
+                string genreString = _console.ReadLine();
                 bool parseResult = int.TryParse(genreString, out int parsedNumber);
                 if (parseResult && parsedNumber >= 1 && parsedNumber < 9)
                 {
@@ -235,12 +244,12 @@ namespace _08_StreamingContent_ConsoleUI
                     return genre;
                 }
 
-                //if (int.TryParse(Console.ReadLine(), out int genreId))
+                //if (int.TryParse(_console.ReadLine(), out int genreId))
                 //{
                 //    return (GenreType)genreId - 1;
                 //}
 
-                Console.WriteLine("Invalid selection. Please try again.");
+                _console.WriteLine("Invalid selection. Please try again.");
             }
         }
 
